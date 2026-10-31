@@ -30,9 +30,10 @@ export function Navbar() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <a href="/" className="flex items-center gap-3">
-            <span className="rounded-xl bg-white px-3 py-1.5 shadow-[0_8px_22px_-8px_rgba(43,59,255,0.5)]">
+            <span className="">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo.png" alt="Obele Autos and Car Accessories" className="h-10 w-auto" />
+              <img src="/logo.png" alt="Obele Autos and Car Accessories" className="logo-for-light h-10 w-auto" />
+              <img src="/logo-light.png" alt="Obele Autos and Car Accessories" className="logo-for-dark h-10 w-auto" />
             </span>
             <span className="hidden lg:block">
               <span className="block text-[11px] uppercase tracking-[0.12em] text-ink/60">Quality vehicles and</span>

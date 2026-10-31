@@ -5,9 +5,10 @@ export function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Company Info */}
           <div>
-            <span className="mb-4 inline-block rounded-xl bg-white px-3 py-1.5">
+            <span className="mb-4 inline-block">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo.png" alt="Obele Autos and Car Accessories" className="h-10 w-auto" />
+              <img src="/logo.png" alt="Obele Autos and Car Accessories" className="logo-for-light h-10 w-auto" />
+              <img src="/logo-light.png" alt="Obele Autos and Car Accessories" className="logo-for-dark h-10 w-auto" />
             </span>
             <p className="mb-4 text-sm text-ink/60">
               Your trusted partner for quality vehicles, accessories, and automotive services.

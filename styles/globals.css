@@ -50,3 +50,8 @@ body {
 .main-content {
   flex: 1;
 }
+
+/* Logo variants: dark-navy for light theme, light version for dark theme */
+.logo-for-dark { display: none; }
+html:not(.light) .logo-for-dark { display: block; }
+html:not(.light) .logo-for-light { display: none; }

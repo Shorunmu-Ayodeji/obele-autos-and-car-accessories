@@ -1,12 +1,36 @@
+import { BatteryCharging, BadgeDollarSign, Car, CircleDot, Anchor, ShieldCheck, Users, Wrench, Layers } from 'lucide-react';
 import { Button } from '../components/Button';
 
 const trustItems = [
-  { title: 'Quality you can trust', icon: '✓' },
-  { title: 'Affordable pricing', icon: '₦' },
-  { title: 'Expert servicing', icon: '🔧' },
-  { title: 'Wide range of vehicles and parts', icon: '🚗' },
-  { title: 'Customer-first approach', icon: '👥' },
+  { title: 'Quality you can trust', icon: ShieldCheck },
+  { title: 'Affordable pricing', icon: BadgeDollarSign },
+  { title: 'Expert servicing', icon: Wrench },
+  { title: 'Wide range of vehicles and parts', icon: Layers },
+  { title: 'Customer-first approach', icon: Users },
 ];
+
+const cardClass =
+  'group relative overflow-hidden rounded-[18px] border border-ink/10 bg-gradient-to-b from-surface2 to-surface transition hover:-translate-y-1.5 hover:border-brand/40';
+const waClass =
+  'inline-flex items-center justify-center rounded-full bg-green-500 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-green-600';
+
+function SectionHead({ eyebrow, title, subtitle }: { eyebrow: string; title: string; subtitle?: string }) {
+  return (
+    <div className="mx-auto mb-12 max-w-2xl text-center">
+      <span className="mb-4 inline-block text-xs font-bold uppercase tracking-[0.18em] text-brand-light">{eyebrow}</span>
+      <h2 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">{title}</h2>
+      {subtitle && <p className="mt-4 text-lg text-ink/60">{subtitle}</p>}
+    </div>
+  );
+}
+
+function ImageTile({ icon: Icon }: { icon: typeof Car }) {
+  return (
+    <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-gradient-to-br from-tile1 to-tile2">
+      <Icon className="h-16 w-16 text-brand-light/40 transition duration-500 group-hover:scale-110" />
+    </div>
+  );
+}
 
 const cars = [
   {
@@ -43,27 +67,27 @@ const services = [
   {
     title: 'Car Sales',
     description: 'Wide selection of quality pre-owned and new vehicles.',
-    icon: '🚗',
+    icon: Car,
   },
   {
     title: 'Engine Servicing',
     description: 'Professional engine maintenance and repair services.',
-    icon: '🔧',
+    icon: Wrench,
   },
   {
     title: 'Batteries',
     description: 'High-quality batteries for all vehicle types.',
-    icon: '🔋',
+    icon: BatteryCharging,
   },
   {
     title: 'Tires',
     description: 'Premium tires and wheel services.',
-    icon: '🛞',
+    icon: CircleDot,
   },
   {
     title: 'Clearing & Forwarding',
     description: 'Complete import/export and customs clearance.',
-    icon: '📦',
+    icon: Anchor,
   },
 ];
 
@@ -87,31 +111,26 @@ const accessories = [
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col gap-20 py-12 lg:gap-24 lg:py-16">
+    <div className="flex flex-col gap-24 py-12 lg:py-16">
       {/* Hero Section */}
       <section className="relative mx-auto w-full max-w-6xl px-4">
-        <div
-          className="overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 to-slate-950 p-8 shadow-2xl shadow-emerald-900/20 backdrop-blur sm:p-12 lg:p-20"
-          style={{
-            backgroundImage: 'url(/api/placeholder/1200/600)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-black/50 rounded-3xl"></div>
+        <div className="relative overflow-hidden rounded-[26px] border border-ink/10 bg-gradient-to-br from-surface2 via-surface to-base p-8 shadow-2xl sm:p-12 lg:p-20">
+          <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-brand/25 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-32 -left-16 h-72 w-72 rounded-full bg-brand-light/10 blur-3xl" />
           <div className="relative mx-auto max-w-3xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Obele Autos and Accessories — Your Trusted Auto Plug
+            <h1 className="text-4xl font-extrabold tracking-tight text-ink sm:text-5xl lg:text-6xl">
+              Obele Autos and Accessories — Your Trusted{' '}
+              <em className="bg-gradient-to-r from-brand to-brand-light bg-clip-text not-italic text-transparent">Auto Plug</em>
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 mx-auto">
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-ink/60">
               Affordable foreign cars, quality auto parts, and expert servicing — all in one place.
             </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center sm:gap-6">
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Button href="/cars">Browse Cars</Button>
               <Button href="/accessories" variant="secondary">
                 Shop Accessories
               </Button>
-              <Button href="https://wa.me/254700123456" className="bg-green-500 hover:bg-green-600 text-white">
+              <Button href="https://wa.me/254700123456" className="!bg-green-500 !bg-none !text-white !shadow-none hover:!bg-green-600">
                 Chat on WhatsApp
               </Button>
             </div>
@@ -121,17 +140,14 @@ export default function HomePage() {
 
       {/* Trust / Why Choose Us */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">Why Choose Obele Autos?</h2>
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+        <SectionHead eyebrow="Why Us" title="Why Choose Obele Autos?" />
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {trustItems.map((item, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center text-center p-6 rounded-2xl border border-slate-700 bg-slate-950/70 shadow-lg backdrop-blur"
-            >
-              <div className="text-4xl mb-4">{item.icon}</div>
-              <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+            <div key={index} className={`${cardClass} flex flex-col items-center p-6 text-center`}>
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-[14px] border border-brand/30 bg-brand/10 text-brand-light">
+                <item.icon className="h-6 w-6" />
+              </div>
+              <h3 className="text-base font-semibold text-ink">{item.title}</h3>
             </div>
           ))}
         </div>
@@ -139,34 +155,23 @@ export default function HomePage() {
 
       {/* Featured Cars Section */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">Available Cars</h2>
-          <p className="mt-4 text-lg text-slate-400">Explore our premium selection of quality vehicles</p>
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <SectionHead eyebrow="Inventory" title="Available Cars" subtitle="Explore our premium selection of quality vehicles" />
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {cars.map((car) => (
-            <div
-              key={car.id}
-              className="group overflow-hidden rounded-2xl border border-slate-700 bg-slate-950/70 shadow-lg transition hover:border-emerald-500/50 hover:shadow-emerald-900/20 hover:shadow-lg backdrop-blur"
-            >
-              <div className="aspect-square bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-                <img src={car.image} alt={car.name} className="w-full h-full object-cover" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-white">{car.name}</h3>
-                <p className="text-sm text-slate-400 mt-1">{car.specs}</p>
-                <p className="mt-4 text-2xl font-bold text-emerald-400">{car.price}</p>
-                <div className="mt-6 flex gap-2">
+            <div key={car.id} className={cardClass}>
+              <ImageTile icon={Car} />
+              <div className="p-5">
+                <h3 className="text-lg font-bold tracking-tight text-ink">{car.name}</h3>
+                <p className="mt-1 text-sm text-ink/60">{car.specs}</p>
+                <p className="mt-4 text-2xl font-extrabold tracking-tight text-brand-light">{car.price}</p>
+                <div className="mt-5 flex flex-col gap-2">
                   <a
                     href={`/cars/${car.id}`}
-                    className="flex-1 rounded-lg bg-slate-700 px-4 py-3 text-center font-semibold text-white transition hover:bg-slate-600"
+                    className="rounded-full border border-ink/15 bg-ink/[0.04] px-4 py-3 text-center text-sm font-semibold text-ink transition hover:border-ink/30 hover:bg-ink/[0.08]"
                   >
                     View Details
                   </a>
-                  <a
-                    href={`https://wa.me/254700123456?text=Hi, I'm interested in the ${car.name}`}
-                    className="flex-1 rounded-lg bg-green-500 px-4 py-3 text-center font-semibold text-white transition hover:bg-green-600"
-                  >
+                  <a href={`https://wa.me/254700123456?text=Hi, I'm interested in the ${car.name}`} className={waClass}>
                     Chat on WhatsApp
                   </a>
                 </div>
@@ -181,22 +186,19 @@ export default function HomePage() {
 
       {/* Services Section */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">Our Services</h2>
-          <p className="mt-4 text-lg text-slate-400">Comprehensive automotive solutions for all your needs</p>
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+        <SectionHead eyebrow="What We Offer" title="Our Services" subtitle="Comprehensive automotive solutions for all your needs" />
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {services.map((service, index) => (
-            <div
-              key={index}
-              className="group overflow-hidden rounded-2xl border border-slate-700 bg-slate-950/70 shadow-lg transition hover:border-emerald-500/50 hover:shadow-emerald-900/20 hover:shadow-2xl backdrop-blur p-6 flex flex-col h-full"
-            >
-              <div className="text-4xl mb-4">{service.icon}</div>
-              <h3 className="text-lg font-semibold text-white mb-3">{service.title}</h3>
-              <p className="flex-grow text-sm text-slate-400 mb-4 leading-relaxed">{service.description}</p>
+            <div key={index} className={`${cardClass} flex h-full flex-col p-6`}>
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(220px_140px_at_50%_0%,rgba(43,59,255,0.18),transparent_70%)] opacity-0 transition group-hover:opacity-100" />
+              <div className="relative mb-5 flex h-12 w-12 items-center justify-center rounded-[14px] border border-brand/30 bg-brand/10 text-brand-light">
+                <service.icon className="h-6 w-6" />
+              </div>
+              <h3 className="relative mb-2 text-lg font-bold tracking-tight text-ink">{service.title}</h3>
+              <p className="relative mb-5 flex-grow text-sm leading-relaxed text-ink/60">{service.description}</p>
               <a
                 href={`https://wa.me/254700123456?text=Hi, I'm interested in ${service.title}`}
-                className="inline-flex items-center justify-center gap-2 mt-auto w-full rounded-lg bg-green-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-green-600"
+                className={`${waClass} relative mt-auto w-full`}
               >
                 Chat on WhatsApp
               </a>
@@ -207,25 +209,17 @@ export default function HomePage() {
 
       {/* Accessories Preview */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">Auto Accessories</h2>
-          <p className="mt-4 text-lg text-slate-400">Enhance your vehicle with our premium accessories</p>
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <SectionHead eyebrow="Shop" title="Auto Accessories" subtitle="Enhance your vehicle with our premium accessories" />
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {accessories.map((item, index) => (
-            <div
-              key={index}
-              className="group overflow-hidden rounded-2xl border border-slate-700 bg-slate-950/70 shadow-lg transition hover:border-emerald-500/50 hover:shadow-emerald-900/20 hover:shadow-lg backdrop-blur"
-            >
-              <div className="aspect-square bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-                <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-white">{item.name}</h3>
-                <p className="mt-4 text-2xl font-bold text-emerald-400">{item.price}</p>
+            <div key={index} className={cardClass}>
+              <ImageTile icon={BatteryCharging} />
+              <div className="p-5">
+                <h3 className="text-lg font-bold tracking-tight text-ink">{item.name}</h3>
+                <p className="mt-3 text-2xl font-extrabold tracking-tight text-brand-light">{item.price}</p>
                 <a
                   href={`https://wa.me/254700123456?text=Hi, I'm interested in ordering ${item.name}`}
-                  className="mt-6 inline-block w-full rounded-lg bg-green-500 px-4 py-3 text-center font-semibold text-white transition hover:bg-green-600"
+                  className={`${waClass} mt-5 w-full`}
                 >
                   Order via WhatsApp
                 </a>
@@ -240,9 +234,9 @@ export default function HomePage() {
 
       {/* About Preview Section */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <div className="overflow-hidden rounded-3xl border border-slate-700 bg-slate-950/70 p-8 shadow-2xl backdrop-blur sm:p-12">
+        <div className="overflow-hidden rounded-[26px] border border-ink/10 bg-gradient-to-b from-surface2 to-surface p-8 sm:p-12">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-lg text-slate-300 leading-relaxed">
+            <p className="text-lg leading-relaxed text-ink/80">
               At Obele Autos and Accessories, we are committed to delivering quality, reliability, and convenience to every car owner. We provide affordable foreign cars, genuine parts, and expert servicing all in one place.
             </p>
             <div className="mt-8">
@@ -254,14 +248,15 @@ export default function HomePage() {
 
       {/* Final CTA */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <div className="overflow-hidden rounded-3xl bg-slate-900 border border-slate-700 p-8 shadow-2xl backdrop-blur sm:p-12">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold text-white sm:text-4xl">Ready to upgrade your ride?</h2>
-            <p className="mt-4 text-lg text-slate-300">
+        <div className="relative overflow-hidden rounded-[26px] border border-brand/30 bg-gradient-to-r from-brand/15 to-brand-light/10 p-8 sm:p-12">
+          <div className="pointer-events-none absolute inset-x-0 -top-20 mx-auto h-56 w-56 rounded-full bg-brand/25 blur-3xl" />
+          <div className="relative mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">Ready to upgrade your ride?</h2>
+            <p className="mt-4 text-lg text-ink/80">
               Get in touch with us today for the best automotive deals.
             </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center sm:gap-6">
-              <Button href="https://wa.me/254700123456" className="bg-green-500 hover:bg-green-600 text-white text-lg px-8 py-4">
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <Button href="https://wa.me/254700123456" className="!bg-green-500 !bg-none !text-white !shadow-none hover:!bg-green-600">
                 Chat on WhatsApp
               </Button>
               <Button href="tel:+254700123456" variant="secondary">Call Now</Button>

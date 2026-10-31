@@ -73,8 +73,8 @@ export default function AccessoriesPage() {
       {/* Hero Section */}
       <section className="mx-auto w-full max-w-6xl px-4">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-white sm:text-5xl">Car Accessories</h1>
-          <p className="mt-4 text-lg text-slate-400">
+          <h1 className="text-4xl font-bold text-ink sm:text-5xl">Car Accessories</h1>
+          <p className="mt-4 text-lg text-ink/60">
             Enhance your vehicle with premium accessories for comfort, style, and performance
           </p>
         </div>
@@ -82,12 +82,12 @@ export default function AccessoriesPage() {
 
       {/* Categories */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <h2 className="mb-8 text-3xl font-bold text-white">Accessory Categories</h2>
+        <h2 className="mb-8 text-3xl font-bold text-ink">Accessory Categories</h2>
         <div className="grid gap-8 sm:grid-cols-2">
           {accessoryCategories.map((category) => (
             <div
               key={category.id}
-              className="group overflow-hidden rounded-2xl border border-slate-700 bg-slate-950/70 shadow-lg transition hover:border-emerald-500/50 hover:shadow-emerald-900/20 backdrop-blur"
+              className="group overflow-hidden rounded-2xl border border-ink/10 bg-surface/80 shadow-lg transition hover:border-brand/50 hover:shadow-brand-dark/30 backdrop-blur"
             >
               <div className="aspect-video overflow-hidden">
                 <img
@@ -97,14 +97,14 @@ export default function AccessoriesPage() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="mb-3 text-xl font-semibold text-white">{category.title}</h3>
-                <p className="mb-4 text-slate-300">{category.description}</p>
+                <h3 className="mb-3 text-xl font-semibold text-ink">{category.title}</h3>
+                <p className="mb-4 text-ink/80">{category.description}</p>
                 <div className="mb-4">
-                  <h4 className="mb-2 text-sm font-semibold text-slate-400">Popular Items:</h4>
-                  <ul className="grid grid-cols-2 gap-1 text-sm text-slate-300">
+                  <h4 className="mb-2 text-sm font-semibold text-ink/60">Popular Items:</h4>
+                  <ul className="grid grid-cols-2 gap-1 text-sm text-ink/80">
                     {category.items.map((item, idx) => (
                       <li key={idx} className="flex items-center gap-2">
-                        <span className="text-emerald-400">•</span>
+                        <span className="text-brand-light">•</span>
                         {item}
                       </li>
                     ))}
@@ -119,12 +119,12 @@ export default function AccessoriesPage() {
 
       {/* Featured Accessories */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <h2 className="mb-8 text-3xl font-bold text-white">Featured Accessories</h2>
+        <h2 className="mb-8 text-3xl font-bold text-ink">Featured Accessories</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {featuredAccessories.map((accessory) => (
             <div
               key={accessory.id}
-              className="group overflow-hidden rounded-xl border border-slate-700 bg-slate-950/70 shadow-lg transition hover:border-emerald-500/50 hover:shadow-emerald-900/20 backdrop-blur"
+              className="group overflow-hidden rounded-xl border border-ink/10 bg-surface/80 shadow-lg transition hover:border-brand/50 hover:shadow-brand-dark/30 backdrop-blur"
             >
               <div className="aspect-square overflow-hidden">
                 <img
@@ -135,12 +135,12 @@ export default function AccessoriesPage() {
               </div>
               <div className="p-4">
                 <div className="mb-2">
-                  <span className="inline-flex rounded-full bg-slate-800 px-2 py-1 text-xs text-slate-400">
+                  <span className="inline-flex rounded-full bg-ink/10 px-2 py-1 text-xs text-ink/60">
                     {accessory.category}
                   </span>
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-white">{accessory.name}</h3>
-                <p className="mb-4 text-xl font-bold text-emerald-400">{accessory.price}</p>
+                <h3 className="mb-2 text-lg font-semibold text-ink">{accessory.name}</h3>
+                <p className="mb-4 text-xl font-bold text-brand-light">{accessory.price}</p>
                 <Button href="#contact">Get Quote</Button>
               </div>
             </div>
@@ -150,33 +150,33 @@ export default function AccessoriesPage() {
 
       {/* Services */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <div className="overflow-hidden rounded-3xl border border-slate-700 bg-slate-950/70 p-8 sm:p-12">
+        <div className="overflow-hidden rounded-[26px] border border-ink/10 bg-surface/80 p-8 sm:p-12">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-white sm:text-4xl">Professional Installation</h2>
-            <p className="mt-4 text-lg text-slate-300">
+            <h2 className="text-3xl font-bold text-ink sm:text-4xl">Professional Installation</h2>
+            <p className="mt-4 text-lg text-ink/80">
               Our certified technicians provide professional installation services for all accessories
             </p>
             <div className="mt-8 grid gap-6 sm:grid-cols-3">
               <div className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20">
-                  <span className="text-2xl font-bold text-emerald-400">TOOLS</span>
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-brand/20">
+                  <span className="text-2xl font-bold text-brand-light">TOOLS</span>
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-white">Expert Installation</h3>
-                <p className="text-sm text-slate-400">Certified technicians with years of experience</p>
+                <h3 className="mb-2 text-lg font-semibold text-ink">Expert Installation</h3>
+                <p className="text-sm text-ink/60">Certified technicians with years of experience</p>
               </div>
               <div className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20">
-                  <span className="text-2xl font-bold text-emerald-400">SHIELD</span>
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-brand/20">
+                  <span className="text-2xl font-bold text-brand-light">SHIELD</span>
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-white">Warranty Coverage</h3>
-                <p className="text-sm text-slate-400">Comprehensive warranty on parts and labor</p>
+                <h3 className="mb-2 text-lg font-semibold text-ink">Warranty Coverage</h3>
+                <p className="text-sm text-ink/60">Comprehensive warranty on parts and labor</p>
               </div>
               <div className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20">
-                  <span className="text-2xl font-bold text-emerald-400">FAST</span>
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-brand/20">
+                  <span className="text-2xl font-bold text-brand-light">FAST</span>
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-white">Quick Service</h3>
-                <p className="text-sm text-slate-400">Fast turnaround times for all installations</p>
+                <h3 className="mb-2 text-lg font-semibold text-ink">Quick Service</h3>
+                <p className="text-sm text-ink/60">Fast turnaround times for all installations</p>
               </div>
             </div>
           </div>
@@ -185,9 +185,9 @@ export default function AccessoriesPage() {
 
       {/* CTA Section */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <div className="overflow-hidden rounded-3xl border border-emerald-500/30 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 p-8 text-center sm:p-12">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">Need Help Choosing Accessories?</h2>
-          <p className="mt-4 text-lg text-slate-300">
+        <div className="overflow-hidden rounded-[26px] border border-brand/30 bg-gradient-to-r from-brand/10 to-brand-light/10 p-8 text-center sm:p-12">
+          <h2 className="text-3xl font-bold text-ink sm:text-4xl">Need Help Choosing Accessories?</h2>
+          <p className="mt-4 text-lg text-ink/80">
             Our experts can help you find the perfect accessories for your vehicle and budget.
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">

@@ -86,8 +86,8 @@ export default function ServicingPage() {
       {/* Hero Section */}
       <section className="mx-auto w-full max-w-6xl px-4">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-white sm:text-5xl">Car Servicing</h1>
-          <p className="mt-4 text-lg text-slate-400">
+          <h1 className="text-4xl font-bold text-ink sm:text-5xl">Car Servicing</h1>
+          <p className="mt-4 text-lg text-ink/60">
             Professional maintenance and repair services by certified technicians
           </p>
         </div>
@@ -95,23 +95,23 @@ export default function ServicingPage() {
 
       {/* Services Grid */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <h2 className="mb-8 text-3xl font-bold text-white">Our Services</h2>
+        <h2 className="mb-8 text-3xl font-bold text-ink">Our Services</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
             <div
               key={service.id}
-              className="group overflow-hidden rounded-2xl border border-slate-700 bg-slate-950/70 shadow-lg transition hover:border-emerald-500/50 hover:shadow-emerald-900/20 hover:shadow-2xl backdrop-blur p-6 flex flex-col h-full"
+              className="group overflow-hidden rounded-2xl border border-ink/10 bg-surface/80 shadow-lg transition hover:border-brand/50 hover:shadow-brand-dark/30 hover:shadow-2xl backdrop-blur p-6 flex flex-col h-full"
             >
-              <h3 className="mb-3 text-lg font-semibold text-white">{service.title}</h3>
-              <p className="mb-4 flex-grow text-sm text-slate-400 leading-relaxed">{service.description}</p>
-              <div className="mb-4 flex items-center justify-between text-sm bg-slate-900/50 rounded-lg p-3">
+              <h3 className="mb-3 text-lg font-semibold text-ink">{service.title}</h3>
+              <p className="mb-4 flex-grow text-sm text-ink/60 leading-relaxed">{service.description}</p>
+              <div className="mb-4 flex items-center justify-between text-sm bg-surface rounded-lg p-3">
                 <div className="flex flex-col">
-                  <span className="text-slate-500 text-xs">Price</span>
-                  <span className="font-semibold text-emerald-400">{service.price}</span>
+                  <span className="text-ink/50 text-xs">Price</span>
+                  <span className="font-semibold text-brand-light">{service.price}</span>
                 </div>
                 <div className="flex flex-col text-right">
-                  <span className="text-slate-500 text-xs">Duration</span>
-                  <span className="font-semibold text-slate-300">{service.duration}</span>
+                  <span className="text-ink/50 text-xs">Duration</span>
+                  <span className="font-semibold text-ink/80">{service.duration}</span>
                 </div>
               </div>
               <Button href="#contact">Book Service</Button>
@@ -122,24 +122,24 @@ export default function ServicingPage() {
 
       {/* Maintenance Packages */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <h2 className="mb-8 text-3xl font-bold text-white text-center">Maintenance Packages</h2>
+        <h2 className="mb-8 text-3xl font-bold text-ink text-center">Maintenance Packages</h2>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {maintenancePackages.map((pkg) => (
             <div
               key={pkg.id}
-              className="flex flex-col rounded-2xl border border-slate-700 bg-slate-950/70 p-6 shadow-lg transition hover:border-emerald-500/50 hover:shadow-emerald-900/20 backdrop-blur"
+              className="flex flex-col rounded-2xl border border-ink/10 bg-surface/80 p-6 shadow-lg transition hover:border-brand/50 hover:shadow-brand-dark/30 backdrop-blur"
             >
               <div className="text-center">
-                <h3 className="mb-2 text-xl font-semibold text-white">{pkg.name}</h3>
-                <p className="mb-4 text-3xl font-bold text-emerald-400">{pkg.price}</p>
-                <p className="mb-6 text-sm text-slate-400">{pkg.description}</p>
+                <h3 className="mb-2 text-xl font-semibold text-ink">{pkg.name}</h3>
+                <p className="mb-4 text-3xl font-bold text-brand-light">{pkg.price}</p>
+                <p className="mb-6 text-sm text-ink/60">{pkg.description}</p>
               </div>
               <div className="mb-6">
-                <h4 className="mb-3 text-sm font-semibold text-slate-300">Includes:</h4>
+                <h4 className="mb-3 text-sm font-semibold text-ink/80">Includes:</h4>
                 <ul className="space-y-2">
                   {pkg.includes.map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-sm text-slate-400">
-                      <span className="text-emerald-400">✓</span>
+                    <li key={idx} className="flex items-center gap-2 text-sm text-ink/60">
+                      <span className="text-brand-light">✓</span>
                       {item}
                     </li>
                   ))}
@@ -153,37 +153,37 @@ export default function ServicingPage() {
 
       {/* Why Choose Us */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <div className="overflow-hidden rounded-3xl border border-slate-700 bg-slate-950/70 p-8 sm:p-12">
+        <div className="overflow-hidden rounded-[26px] border border-ink/10 bg-surface/80 p-8 sm:p-12">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-white sm:text-4xl">Why Choose Our Service?</h2>
+            <h2 className="text-3xl font-bold text-ink sm:text-4xl">Why Choose Our Service?</h2>
             <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               <div className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20">
-                  <span className="text-2xl font-bold text-emerald-400">CERTIFIED</span>
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-brand/20">
+                  <span className="text-2xl font-bold text-brand-light">CERTIFIED</span>
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-white">Certified Technicians</h3>
-                <p className="text-sm text-slate-400">ASE certified with years of experience</p>
+                <h3 className="mb-2 text-lg font-semibold text-ink">Certified Technicians</h3>
+                <p className="text-sm text-ink/60">ASE certified with years of experience</p>
               </div>
               <div className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20">
-                  <span className="text-2xl font-bold text-emerald-400">WARRANTY</span>
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-brand/20">
+                  <span className="text-2xl font-bold text-brand-light">WARRANTY</span>
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-white">Warranty Coverage</h3>
-                <p className="text-sm text-slate-400">Comprehensive warranty on all services</p>
+                <h3 className="mb-2 text-lg font-semibold text-ink">Warranty Coverage</h3>
+                <p className="text-sm text-ink/60">Comprehensive warranty on all services</p>
               </div>
               <div className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20">
-                  <span className="text-2xl font-bold text-emerald-400">FAST</span>
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-brand/20">
+                  <span className="text-2xl font-bold text-brand-light">FAST</span>
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-white">Quick Turnaround</h3>
-                <p className="text-sm text-slate-400">Most services completed same day</p>
+                <h3 className="mb-2 text-lg font-semibold text-ink">Quick Turnaround</h3>
+                <p className="text-sm text-ink/60">Most services completed same day</p>
               </div>
               <div className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20">
-                  <span className="text-2xl font-bold text-emerald-400">AFFORDABLE</span>
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-brand/20">
+                  <span className="text-2xl font-bold text-brand-light">AFFORDABLE</span>
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-white">Competitive Pricing</h3>
-                <p className="text-sm text-slate-400">Transparent pricing with no hidden fees</p>
+                <h3 className="mb-2 text-lg font-semibold text-ink">Competitive Pricing</h3>
+                <p className="text-sm text-ink/60">Transparent pricing with no hidden fees</p>
               </div>
             </div>
           </div>
@@ -192,9 +192,9 @@ export default function ServicingPage() {
 
       {/* Booking Section */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <div className="overflow-hidden rounded-3xl border border-emerald-500/30 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 p-8 text-center sm:p-12">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">Book Your Service Today</h2>
-          <p className="mt-4 text-lg text-slate-300">
+        <div className="overflow-hidden rounded-[26px] border border-brand/30 bg-gradient-to-r from-brand/10 to-brand-light/10 p-8 text-center sm:p-12">
+          <h2 className="text-3xl font-bold text-ink sm:text-4xl">Book Your Service Today</h2>
+          <p className="mt-4 text-lg text-ink/80">
             Schedule an appointment online or call us to book your vehicle service.
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">

@@ -1,4 +1,7 @@
 import { Button } from '../../components/Button';
+import { getContact } from '../../lib/sanity';
+
+export const revalidate = 60;
 
 const services = [
   {
@@ -63,7 +66,8 @@ export const metadata = {
   description: 'Professional import/export services for vehicles and automotive parts with customs clearance.',
 };
 
-export default function ClearingForwardingPage() {
+export default async function ClearingForwardingPage() {
+  const contact = await getContact();
   return (
     <div className="flex flex-col gap-16 py-12">
       {/* Hero Section */}
@@ -188,7 +192,7 @@ export default function ClearingForwardingPage() {
                   <span className="text-xl font-bold text-brand-light">CALL</span>
                 </div>
                 <p className="text-sm font-semibold text-ink">Call Us</p>
-                <p className="text-sm text-ink/60">+254700123456</p>
+                <p className="text-sm text-ink/60">{contact.phone}</p>
               </div>
               <div className="text-center">
                 <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-brand/20">
@@ -202,7 +206,7 @@ export default function ClearingForwardingPage() {
                   <span className="text-xl font-bold text-brand-light">WHATSAPP</span>
                 </div>
                 <p className="text-sm font-semibold text-ink">WhatsApp</p>
-                <p className="text-sm text-ink/60">+254700123456</p>
+                <p className="text-sm text-ink/60">{contact.whatsapp}</p>
               </div>
               <div className="text-center">
                 <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-brand/20">
@@ -214,7 +218,7 @@ export default function ClearingForwardingPage() {
             </div>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Button href="#contact">Get Free Quote</Button>
-              <Button href="tel:+254700123456" variant="secondary">Call Now</Button>
+              <Button href={contact.tel} variant="secondary">Call Now</Button>
             </div>
           </div>
         </div>

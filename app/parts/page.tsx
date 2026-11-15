@@ -1,4 +1,7 @@
 import { Button } from '../../components/Button';
+import { getContact } from '../../lib/sanity';
+
+export const revalidate = 60;
 
 const partsCategories = [
   {
@@ -79,7 +82,8 @@ export const metadata = {
   description: 'Genuine and aftermarket car parts with warranty coverage for all makes and models.',
 };
 
-export default function PartsPage() {
+export default async function PartsPage() {
+  const contact = await getContact();
   return (
     <div className="flex flex-col gap-16 py-12">
       {/* Hero Section */}
@@ -221,7 +225,7 @@ export default function PartsPage() {
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Button href="#contact">Get Parts Quote</Button>
-            <Button href="tel:+254700123456" variant="secondary">Call Parts Department</Button>
+            <Button href={contact.tel} variant="secondary">Call Parts Department</Button>
           </div>
         </div>
       </section>

@@ -1,5 +1,8 @@
 import { Anchor, BatteryCharging, CircleDot, Car, Wrench, ShieldCheck, BadgeDollarSign, Users, Layers } from 'lucide-react';
 import { Button } from '../../components/Button';
+import { getContact } from '../../lib/sanity';
+
+export const revalidate = 60;
 
 export const metadata = {
   title: 'Our Services | Obele Autos and Car Accessories',
@@ -49,7 +52,8 @@ const services = [
   },
 ];
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const contact = await getContact();
   return (
     <div className="flex flex-col gap-24 bg-base py-16">
       {/* Hero Section */}
@@ -167,10 +171,10 @@ export default function ServicesPage() {
             Contact us today to discuss your automotive needs and get a personalized quote.
           </p>
           <div className="relative mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <Button href="https://wa.me/254700123456" className="!bg-gradient-to-r !from-brand !to-brand-light !text-white !shadow-[0_10px_30px_-10px_rgba(43,59,255,0.8)]">
+            <Button href={contact.wa} className="!bg-gradient-to-r !from-brand !to-brand-light !text-white !shadow-[0_10px_30px_-10px_rgba(43,59,255,0.8)]">
               Chat on WhatsApp
             </Button>
-            <Button href="tel:+254700123456" variant="secondary" className="!border !border-ink/15 !bg-ink/[0.04] !text-ink hover:!bg-ink/[0.08]">
+            <Button href={contact.tel} variant="secondary" className="!border !border-ink/15 !bg-ink/[0.04] !text-ink hover:!bg-ink/[0.08]">
               Call Now
             </Button>
           </div>

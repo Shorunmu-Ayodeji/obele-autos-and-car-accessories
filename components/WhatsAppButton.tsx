@@ -2,10 +2,10 @@ import { WhatsAppIcon } from './WhatsAppIcon';
 
 const message = encodeURIComponent("Hi! I'm interested in your automotive services. Can you help me?");
 
-export function WhatsAppButton() {
+export function WhatsAppButton({ wa }: { wa: string }) {
   return (
     <a
-      href={`https://wa.me/254700123456?text=${message}`}
+      href={`${wa}?text=${message}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"

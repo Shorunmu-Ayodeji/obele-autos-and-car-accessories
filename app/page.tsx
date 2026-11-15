@@ -1,5 +1,8 @@
 import { BatteryCharging, BadgeDollarSign, Car, CircleDot, Anchor, ShieldCheck, Users, Wrench, Layers } from 'lucide-react';
 import { Button } from '../components/Button';
+import { getContact } from '../lib/sanity';
+
+export const revalidate = 60;
 
 const trustItems = [
   { title: 'Quality you can trust', icon: ShieldCheck },
@@ -109,7 +112,8 @@ const accessories = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const contact = await getContact();
   return (
     <div className="flex flex-col gap-24 py-12 lg:py-16">
       {/* Hero Section */}
@@ -130,7 +134,7 @@ export default function HomePage() {
               <Button href="/accessories" variant="secondary">
                 Shop Accessories
               </Button>
-              <Button href="https://wa.me/254700123456" className="!bg-green-500 !bg-none !text-white !shadow-none hover:!bg-green-600">
+              <Button href={contact.wa} className="!bg-green-500 !bg-none !text-white !shadow-none hover:!bg-green-600">
                 Chat on WhatsApp
               </Button>
             </div>
@@ -171,7 +175,7 @@ export default function HomePage() {
                   >
                     View Details
                   </a>
-                  <a href={`https://wa.me/254700123456?text=Hi, I'm interested in the ${car.name}`} className={waClass}>
+                  <a href={`${contact.wa}?text=Hi, I'm interested in the ${car.name}`} className={waClass}>
                     Chat on WhatsApp
                   </a>
                 </div>
@@ -197,7 +201,7 @@ export default function HomePage() {
               <h3 className="relative mb-2 text-lg font-bold tracking-tight text-ink">{service.title}</h3>
               <p className="relative mb-5 flex-grow text-sm leading-relaxed text-ink/60">{service.description}</p>
               <a
-                href={`https://wa.me/254700123456?text=Hi, I'm interested in ${service.title}`}
+                href={`${contact.wa}?text=Hi, I'm interested in ${service.title}`}
                 className={`${waClass} relative mt-auto w-full`}
               >
                 Chat on WhatsApp
@@ -218,7 +222,7 @@ export default function HomePage() {
                 <h3 className="text-lg font-bold tracking-tight text-ink">{item.name}</h3>
                 <p className="mt-3 text-2xl font-extrabold tracking-tight text-brand-light">{item.price}</p>
                 <a
-                  href={`https://wa.me/254700123456?text=Hi, I'm interested in ordering ${item.name}`}
+                  href={`${contact.wa}?text=Hi, I'm interested in ordering ${item.name}`}
                   className={`${waClass} mt-5 w-full`}
                 >
                   Order via WhatsApp
@@ -256,10 +260,10 @@ export default function HomePage() {
               Get in touch with us today for the best automotive deals.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Button href="https://wa.me/254700123456" className="!bg-green-500 !bg-none !text-white !shadow-none hover:!bg-green-600">
+              <Button href={contact.wa} className="!bg-green-500 !bg-none !text-white !shadow-none hover:!bg-green-600">
                 Chat on WhatsApp
               </Button>
-              <Button href="tel:+254700123456" variant="secondary">Call Now</Button>
+              <Button href={contact.tel} variant="secondary">Call Now</Button>
             </div>
           </div>
         </div>

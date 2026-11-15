@@ -1,4 +1,6 @@
-export function Footer() {
+import type { Contact } from '../lib/sanity';
+
+export function Footer({ contact }: { contact: Contact }) {
   return (
     <footer className="border-t border-ink/10 bg-base/90 py-12">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -14,9 +16,9 @@ export function Footer() {
               Your trusted partner for quality vehicles, accessories, and automotive services.
             </p>
             <div className="space-y-2 text-sm text-ink/60">
-              <p>123 Business Street, Nairobi</p>
-              <p>+254 700 123 456</p>
-              <p>info@obeleautos.com</p>
+              <p>{contact.address}</p>
+              <p>{contact.phone}</p>
+              <p>{contact.email}</p>
             </div>
           </div>
 

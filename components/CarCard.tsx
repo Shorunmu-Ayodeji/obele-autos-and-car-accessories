@@ -1,5 +1,5 @@
 type CarCardProps = {
-  id: number;
+  id: string | number;
   image: string;
   name: string;
   price: string;

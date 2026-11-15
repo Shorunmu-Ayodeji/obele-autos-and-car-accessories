@@ -13,15 +13,13 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ];
 
-const whatsappNumber = '+254700123456'; // Replace with your WhatsApp number
-
-export function Navbar() {
+export function Navbar({ wa }: { wa: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const handleWhatsApp = () => {
-    window.open(`https://wa.me/${whatsappNumber.replace(/\D/g, '')}`, '_blank');
+    window.open(wa, '_blank');
   };
 
   return (

@@ -1,4 +1,7 @@
 import { Button } from '../../components/Button';
+import { getContact } from '../../lib/sanity';
+
+export const revalidate = 60;
 
 const accessoryCategories = [
   {
@@ -67,7 +70,8 @@ export const metadata = {
   description: 'Premium car accessories for interior, exterior, electronics, and performance upgrades.',
 };
 
-export default function AccessoriesPage() {
+export default async function AccessoriesPage() {
+  const contact = await getContact();
   return (
     <div className="flex flex-col gap-16 py-12">
       {/* Hero Section */}
@@ -192,7 +196,7 @@ export default function AccessoriesPage() {
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Button href="#contact">Get Free Consultation</Button>
-            <Button href="tel:+254700123456" variant="secondary">Call Now</Button>
+            <Button href={contact.tel} variant="secondary">Call Now</Button>
           </div>
         </div>
       </section>

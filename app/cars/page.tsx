@@ -1,22 +1,15 @@
 import { CarCard } from '../../components/CarCard';
-import { carDatabase } from '../../lib/cars';
+import { getCars } from '../../lib/sanity';
 
-const carInventory = carDatabase.map(car => ({
-  id: car.id,
-  image: car.image,
-  name: car.name,
-  price: car.price,
-  description: car.description,
-  year: car.year,
-  mileage: car.mileage,
-}));
+export const revalidate = 60;
 
 export const metadata = {
   title: 'Cars for Sale | Obele Autos and Car Accessories',
   description: 'Browse our available vehicles for sale.',
 };
 
-export default function CarsPage() {
+export default async function CarsPage() {
+  const carInventory = await getCars();
   return (
     <div className="flex flex-col gap-16 py-12">
       {/* Cars Grid */}

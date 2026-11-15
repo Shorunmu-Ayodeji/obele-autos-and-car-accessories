@@ -1,11 +1,15 @@
 import { Button } from '../../components/Button';
+import { getContact } from '../../lib/sanity';
+
+export const revalidate = 60;
 
 export const metadata = {
   title: 'Contact Us | Obele Autos and Car Accessories',
   description: 'Get in touch with Obele Autos and Car Accessories for all your automotive needs. Find our location, phone numbers, and contact information.',
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const contact = await getContact();
   return (
     <div className="flex flex-col gap-16 py-12">
       {/* Hero Section */}
@@ -78,8 +82,8 @@ export default function ContactPage() {
             <div className="rounded-2xl border border-ink/10 bg-surface/80 p-6">
               <h3 className="mb-4 text-lg font-semibold text-ink">Quick Actions</h3>
               <div className="grid gap-3 sm:grid-cols-2">
-                <Button href="tel:+254700123456">Call Now</Button>
-                <Button href="https://wa.me/254700123456" variant="secondary">WhatsApp</Button>
+                <Button href={contact.tel}>Call Now</Button>
+                <Button href={contact.wa} variant="secondary">WhatsApp</Button>
                 <Button href="mailto:info@obeleautos.com" variant="secondary">Email Us</Button>
                 <Button href="/cars" variant="secondary">Browse Cars</Button>
               </div>

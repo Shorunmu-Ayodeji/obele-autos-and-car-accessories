@@ -1,4 +1,4 @@
 export const siteConfig = {
   title: 'Obele Autos and Car Accessories',
-  description: 'A clean Next.js App Router starter with Tailwind CSS.',
+  description: 'Quality used cars, genuine parts, accessories, servicing and clearing & forwarding.',
 };

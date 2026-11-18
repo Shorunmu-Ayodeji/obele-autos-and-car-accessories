@@ -123,11 +123,11 @@ export default async function HomePage() {
           <div className="pointer-events-none absolute -bottom-32 -left-16 h-72 w-72 rounded-full bg-brand-light/10 blur-3xl" />
           <div className="relative mx-auto max-w-3xl text-center">
             <h1 className="text-4xl font-extrabold tracking-tight text-ink sm:text-5xl lg:text-6xl">
-              Obele Autos and Accessories — Your Trusted{' '}
+              Obele Autos and Accessories: Your Trusted{' '}
               <em className="bg-gradient-to-r from-brand to-brand-light bg-clip-text not-italic text-transparent">Auto Plug</em>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-ink/60">
-              Affordable foreign cars, quality auto parts, and expert servicing — all in one place.
+              Affordable foreign cars, quality auto parts, and expert servicing, all in one place.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Button href="/cars">Browse Cars</Button>

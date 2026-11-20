@@ -55,3 +55,7 @@ body {
 .logo-for-dark { display: none; }
 html:not(.light) .logo-for-dark { display: block; }
 html:not(.light) .logo-for-light { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-drive { animation: none; transform: translateX(40%); }
+}

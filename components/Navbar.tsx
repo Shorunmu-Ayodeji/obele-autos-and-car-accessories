@@ -57,7 +57,7 @@ export function Navbar({ wa }: { wa: string }) {
             <ThemeToggle />
             <button
               onClick={handleWhatsApp}
-              className="hidden sm:inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-light focus:outline-none focus:ring-2 focus:ring-brand/50"
+              className="hidden sm:inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-accent/50"
             >
               <WhatsAppIcon className="h-4 w-4" />
               WhatsApp
@@ -101,7 +101,7 @@ export function Navbar({ wa }: { wa: string }) {
                 handleWhatsApp();
                 setIsOpen(false);
               }}
-              className="mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-brand px-4 py-3 text-sm font-semibold text-white transition hover:bg-brand-light"
+              className="mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-semibold text-white transition hover:bg-accent-dark"
             >
               <WhatsAppIcon className="h-5 w-5" />
               WhatsApp

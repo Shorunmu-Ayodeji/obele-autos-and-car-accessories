@@ -87,3 +87,48 @@ export async function getContact(): Promise<Contact> {
     address: s.address || '123 Business Street, Nairobi',
   }
 }
+
+export type Service = {
+  id: string
+  title: string
+  description: string
+  icon?: string
+  href?: string
+  features: string[]
+}
+
+export type Item = {
+  id: string
+  name: string
+  price?: string
+  category?: string
+  brand?: string
+  warranty?: string
+  image?: string
+}
+
+export async function getServices(): Promise<Service[]> {
+  return client.fetch(
+    `*[_type == "service"] | order(order asc, _createdAt asc) {
+      "id": _id, title, description, icon, href, "features": coalesce(features, [])
+    }`,
+    {},
+    {next: {revalidate: 60}},
+  )
+}
+
+export async function getAccessories(): Promise<Item[]> {
+  return client.fetch(
+    `*[_type == "accessory"] | order(_createdAt desc) {"id": _id, name, price, category, "image": image.asset->url}`,
+    {},
+    {next: {revalidate: 60}},
+  )
+}
+
+export async function getParts(): Promise<Item[]> {
+  return client.fetch(
+    `*[_type == "part"] | order(_createdAt desc) {"id": _id, name, price, category, brand, warranty, "image": image.asset->url}`,
+    {},
+    {next: {revalidate: 60}},
+  )
+}

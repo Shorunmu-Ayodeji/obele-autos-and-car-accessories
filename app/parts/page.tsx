@@ -1,5 +1,5 @@
 import { Button } from '../../components/Button';
-import { getContact } from '../../lib/sanity';
+import { getContact, getParts } from '../../lib/sanity';
 
 export const revalidate = 60;
 
@@ -34,45 +34,6 @@ const partsCategories = [
   },
 ];
 
-const featuredParts = [
-  {
-    id: 1,
-    name: 'Premium Brake Pad Set',
-    price: '$89',
-    brand: 'Bosch',
-    image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop',
-    category: 'Brakes',
-    warranty: '2 Years',
-  },
-  {
-    id: 2,
-    name: 'Engine Oil Filter',
-    price: '$12',
-    brand: 'Fram',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
-    category: 'Engine',
-    warranty: '1 Year',
-  },
-  {
-    id: 3,
-    name: 'Car Battery 12V',
-    price: '$149',
-    brand: 'ACDelco',
-    image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop',
-    category: 'Electrical',
-    warranty: '3 Years',
-  },
-  {
-    id: 4,
-    name: 'Shock Absorber',
-    price: '$79',
-    brand: 'Monroe',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
-    category: 'Suspension',
-    warranty: '5 Years',
-  },
-];
-
 const brands = [
   'Bosch', 'ACDelco', 'Monroe', 'Fram', 'NGK', 'Denso', 'Gates', 'Michelin', 'Bridgestone', 'Continental'
 ];
@@ -83,7 +44,7 @@ export const metadata = {
 };
 
 export default async function PartsPage() {
-  const contact = await getContact();
+  const [contact, featuredParts] = await Promise.all([getContact(), getParts()]);
   return (
     <div className="flex flex-col gap-16 py-12">
       {/* Hero Section */}
@@ -134,7 +95,7 @@ export default async function PartsPage() {
       </section>
 
       {/* Featured Parts */}
-      <section className="mx-auto w-full max-w-6xl px-4">
+      {featuredParts.length > 0 && <section  className="mx-auto w-full max-w-6xl px-4">
         <h2 className="mb-8 text-3xl font-bold text-ink">Featured Parts</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {featuredParts.map((part) => (
@@ -164,7 +125,7 @@ export default async function PartsPage() {
             </div>
           ))}
         </div>
-      </section>
+      </section>}
 
       {/* Brands */}
       <section className="mx-auto w-full max-w-6xl px-4">

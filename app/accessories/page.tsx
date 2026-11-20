@@ -1,5 +1,5 @@
 import { Button } from '../../components/Button';
-import { getContact } from '../../lib/sanity';
+import { getAccessories, getContact } from '../../lib/sanity';
 
 export const revalidate = 60;
 
@@ -34,44 +34,13 @@ const accessoryCategories = [
   },
 ];
 
-const featuredAccessories = [
-  {
-    id: 1,
-    name: 'Premium Leather Seat Covers',
-    price: '$299',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
-    category: 'Interior',
-  },
-  {
-    id: 2,
-    name: 'LED Headlight Kit',
-    price: '$189',
-    image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop',
-    category: 'Exterior',
-  },
-  {
-    id: 3,
-    name: 'Bluetooth Car Stereo',
-    price: '$249',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
-    category: 'Electronics',
-  },
-  {
-    id: 4,
-    name: 'Performance Air Filter',
-    price: '$89',
-    image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop',
-    category: 'Performance',
-  },
-];
-
 export const metadata = {
   title: 'Car Accessories | Obele Autos and Car Accessories',
   description: 'Premium car accessories for interior, exterior, electronics, and performance upgrades.',
 };
 
 export default async function AccessoriesPage() {
-  const contact = await getContact();
+  const [contact, featuredAccessories] = await Promise.all([getContact(), getAccessories()]);
   return (
     <div className="flex flex-col gap-16 py-12">
       {/* Hero Section */}
@@ -122,7 +91,7 @@ export default async function AccessoriesPage() {
       </section>
 
       {/* Featured Accessories */}
-      <section className="mx-auto w-full max-w-6xl px-4">
+      {featuredAccessories.length > 0 && <section  className="mx-auto w-full max-w-6xl px-4">
         <h2 className="mb-8 text-3xl font-bold text-ink">Featured Accessories</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {featuredAccessories.map((accessory) => (
@@ -150,7 +119,7 @@ export default async function AccessoriesPage() {
             </div>
           ))}
         </div>
-      </section>
+      </section>}
 
       {/* Services */}
       <section className="mx-auto w-full max-w-6xl px-4">

@@ -8,14 +8,19 @@ const config: Config = {
   theme: {
     extend: {
       keyframes: {
+        drive: {
+          '0%': { transform: 'translateX(-120%)' },
+          '100%': { transform: 'translateX(calc(100vw))' },
+        },
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
         },
       },
-      animation: { float: 'float 3s ease-in-out infinite' },
+      animation: { float: 'float 3s ease-in-out infinite', drive: 'drive 9s linear infinite' },
       colors: {
         brand: { DEFAULT: '#2B3BFF', light: '#5A6BFF', dark: '#0A0C8C' },
+        accent: { DEFAULT: '#16A34A', light: '#22C55E', dark: '#15803D' },
         base: 'rgb(var(--c-base) / <alpha-value>)',
         surface: 'rgb(var(--c-surface) / <alpha-value>)',
         surface2: 'rgb(var(--c-surface2) / <alpha-value>)',

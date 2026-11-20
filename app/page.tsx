@@ -1,96 +1,45 @@
-import { BatteryCharging, BadgeDollarSign, Car, CircleDot, Anchor, ShieldCheck, Users, Wrench, Layers } from 'lucide-react';
 import { Button } from '../components/Button';
-import { getContact } from '../lib/sanity';
+import { HeroVideo } from '../components/HeroVideo';
+import { getCars, getContact } from '../lib/sanity';
 
 export const revalidate = 60;
 
 const trustItems = [
-  { title: 'Quality you can trust', icon: ShieldCheck },
-  { title: 'Affordable pricing', icon: BadgeDollarSign },
-  { title: 'Expert servicing', icon: Wrench },
-  { title: 'Wide range of vehicles and parts', icon: Layers },
-  { title: 'Customer-first approach', icon: Users },
+  { title: 'Quality you can trust', text: 'Top-quality vehicles, handpicked for you.', href: '/cars', path: 'M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3zm-3 9l2 2 4-4' },
+  { title: 'Affordable pricing', text: 'Get the best value for your money.', href: '/cars', path: 'M3 12l9-9h8v8l-9 9-8-8zm13-5h.01' },
+  { title: 'Expert servicing', text: 'Keep your ride in perfect condition.', href: '/servicing', path: 'M14.7 6.3a4 4 0 00-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 005.4-5.4l-2.4 2.4-2.6-.6-.6-2.6 2.6-2.2z' },
+  { title: 'Wide range of vehicles and parts', text: "From cars to parts, we've got you covered.", href: '/parts', path: 'M5 16l1.5-5h11L19 16M5 16h14v3H5v-3zm2 0v-.01M17 16v-.01' },
+  { title: 'Customer-first approach', text: 'Your satisfaction is our priority.', href: '/contact', path: 'M4 14v-2a8 8 0 0116 0v2M4 14h3v4H4v-4zm13 0h3v4h-3v-4zm3 4c0 2-3 3-6 3' },
 ];
 
-const cardClass =
-  'group relative overflow-hidden rounded-[18px] border border-ink/10 bg-gradient-to-b from-surface2 to-surface transition hover:-translate-y-1.5 hover:border-brand/40';
-const waClass =
-  'inline-flex items-center justify-center rounded-full bg-green-500 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-green-600';
+const trustStats = ['Trusted by Thousands', 'Reliable Service Always', 'Drive with Confidence'];
 
-function SectionHead({ eyebrow, title, subtitle }: { eyebrow: string; title: string; subtitle?: string }) {
-  return (
-    <div className="mx-auto mb-12 max-w-2xl text-center">
-      <span className="mb-4 inline-block text-xs font-bold uppercase tracking-[0.18em] text-brand-light">{eyebrow}</span>
-      <h2 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">{title}</h2>
-      {subtitle && <p className="mt-4 text-lg text-ink/60">{subtitle}</p>}
-    </div>
-  );
-}
-
-function ImageTile({ icon: Icon }: { icon: typeof Car }) {
-  return (
-    <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-gradient-to-br from-tile1 to-tile2">
-      <Icon className="h-16 w-16 text-brand-light/40 transition duration-500 group-hover:scale-110" />
-    </div>
-  );
-}
-
-const cars = [
-  {
-    id: 1,
-    name: 'Toyota Camry 2012',
-    price: '₦2,500,000',
-    specs: '2.5L Engine, Automatic',
-    image: '/api/placeholder/400/300',
-  },
-  {
-    id: 2,
-    name: 'Honda Accord 2015',
-    price: '₦3,200,000',
-    specs: '2.4L Engine, CVT',
-    image: '/api/placeholder/400/300',
-  },
-  {
-    id: 3,
-    name: 'Nissan Altima 2013',
-    price: '₦2,800,000',
-    specs: '2.5L Engine, Automatic',
-    image: '/api/placeholder/400/300',
-  },
-  {
-    id: 4,
-    name: 'Mazda CX-5 2018',
-    price: '₦4,500,000',
-    specs: '2.0L Turbo, Automatic',
-    image: '/api/placeholder/400/300',
-  },
-];
 
 const services = [
   {
     title: 'Car Sales',
     description: 'Wide selection of quality pre-owned and new vehicles.',
-    icon: Car,
+    icon: '🚗',
   },
   {
     title: 'Engine Servicing',
     description: 'Professional engine maintenance and repair services.',
-    icon: Wrench,
+    icon: '🔧',
   },
   {
     title: 'Batteries',
     description: 'High-quality batteries for all vehicle types.',
-    icon: BatteryCharging,
+    icon: '🔋',
   },
   {
     title: 'Tires',
     description: 'Premium tires and wheel services.',
-    icon: CircleDot,
+    icon: '🛞',
   },
   {
     title: 'Clearing & Forwarding',
     description: 'Complete import/export and customs clearance.',
-    icon: Anchor,
+    icon: '📦',
   },
 ];
 
@@ -113,69 +62,101 @@ const accessories = [
 ];
 
 export default async function HomePage() {
-  const contact = await getContact();
+  const [allCars, contact] = await Promise.all([getCars(), getContact()]);
+  const cars = allCars.slice(0, 4);
   return (
-    <div className="flex flex-col gap-24 py-12 lg:py-16">
+    <div className="flex flex-col gap-20 py-12 lg:gap-24 lg:py-16">
       {/* Hero Section */}
-      <section className="relative mx-auto w-full max-w-6xl px-4">
-        <div className="relative overflow-hidden rounded-[26px] border border-ink/10 bg-gradient-to-br from-surface2 via-surface to-base p-8 shadow-2xl sm:p-12 lg:p-20">
-          <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-brand/25 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-32 -left-16 h-72 w-72 rounded-full bg-brand-light/10 blur-3xl" />
-          <div className="relative mx-auto max-w-3xl text-center">
-            <h1 className="text-4xl font-extrabold tracking-tight text-ink sm:text-5xl lg:text-6xl">
-              Obele Autos and Accessories: Your Trusted{' '}
-              <em className="bg-gradient-to-r from-brand to-brand-light bg-clip-text not-italic text-transparent">Auto Plug</em>
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-ink/60">
-              Affordable foreign cars, quality auto parts, and expert servicing, all in one place.
-            </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Button href="/cars">Browse Cars</Button>
-              <Button href="/accessories" variant="secondary">
-                Shop Accessories
-              </Button>
-              <Button href={contact.wa} className="!bg-green-500 !bg-none !text-white !shadow-none hover:!bg-green-600">
-                Chat on WhatsApp
-              </Button>
-            </div>
+      <section className="relative isolate mx-auto w-full max-w-6xl overflow-hidden rounded-3xl px-4 py-16 sm:py-24">
+        <HeroVideo />
+        <div className="relative mx-auto max-w-3xl pt-6 text-center">
+          <h1 className="text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl">
+            Obele Autos and Accessories, Your Trusted Auto Plug
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-ink/70">
+            Affordable foreign cars, quality auto parts, and expert servicing, all in one place.
+          </p>
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center sm:gap-6">
+            <Button href="/cars">Browse Cars</Button>
+            <Button href="/accessories" variant="secondary">
+              Shop Accessories
+            </Button>
+            <Button href={contact.wa} className="bg-accent text-white shadow-accent/30 hover:bg-accent-dark">
+              Chat on WhatsApp
+            </Button>
           </div>
         </div>
-      </section>
 
+      </section>
       {/* Trust / Why Choose Us */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <SectionHead eyebrow="Why Us" title="Why Choose Obele Autos?" />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-          {trustItems.map((item, index) => (
-            <div key={index} className={`${cardClass} flex flex-col items-center p-6 text-center`}>
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-[14px] border border-brand/30 bg-brand/10 text-brand-light">
-                <item.icon className="h-6 w-6" />
-              </div>
-              <h3 className="text-base font-semibold text-ink">{item.title}</h3>
-            </div>
+        <div className="mb-10 text-center sm:text-left">
+          <span className="inline-block rounded-full border border-brand/40 px-4 py-1 text-sm font-semibold text-brand-light">Why Choose Us</span>
+          <h2 className="mt-4 text-4xl font-extrabold text-ink sm:text-5xl">
+            Why Choose <span className="block text-brand-light">Obele Autos?</span>
+          </h2>
+          <p className="mt-4 max-w-xl text-ink/60">
+            At Obele Autos, we are committed to giving you more than just a car, we deliver trust, value and a seamless experience.
+          </p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {trustItems.map((item) => (
+            <a
+              key={item.title}
+              href={item.href}
+              className="group flex flex-col rounded-2xl border border-brand/30 bg-surface/70 p-5 shadow-lg transition hover:border-brand-light hover:shadow-brand/20"
+            >
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand/15 text-brand-light">
+                <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d={item.path} />
+                </svg>
+              </span>
+              <h3 className="mt-4 text-lg font-semibold text-ink">{item.title}</h3>
+              <p className="mt-2 flex-1 text-sm text-ink/60">{item.text}</p>
+              <span className="mt-4 flex h-8 w-8 items-center justify-center rounded-full border border-brand text-brand-light transition group-hover:bg-brand group-hover:text-white">→</span>
+            </a>
           ))}
+        </div>
+        <div className="mt-6 flex flex-col items-center justify-between gap-4 rounded-2xl border border-brand/30 bg-surface/70 p-5 sm:flex-row">
+          <div className="flex flex-col gap-2 text-center text-sm font-semibold text-ink sm:flex-row sm:gap-8 sm:text-left">
+            {trustStats.map((s) => (
+              <span key={s}>{s}</span>
+            ))}
+          </div>
+          <Button href="/cars">Explore Our Cars →</Button>
         </div>
       </section>
 
       {/* Featured Cars Section */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <SectionHead eyebrow="Inventory" title="Available Cars" subtitle="Explore our premium selection of quality vehicles" />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl font-bold text-ink sm:text-4xl">Available Cars</h2>
+          <p className="mt-4 text-lg text-ink/60">Explore our premium selection of quality vehicles</p>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {cars.map((car) => (
-            <div key={car.id} className={cardClass}>
-              <ImageTile icon={Car} />
-              <div className="p-5">
-                <h3 className="text-lg font-bold tracking-tight text-ink">{car.name}</h3>
-                <p className="mt-1 text-sm text-ink/60">{car.specs}</p>
-                <p className="mt-4 text-2xl font-extrabold tracking-tight text-brand-light">{car.price}</p>
-                <div className="mt-5 flex flex-col gap-2">
+            <div
+              key={car.id}
+              className="group overflow-hidden rounded-2xl border border-brand/20 bg-surface/70 shadow-lg transition hover:border-brand/60 hover:shadow-brand/20 hover:shadow-lg backdrop-blur"
+            >
+              <div className="aspect-square bg-gradient-to-br from-tile1 to-tile2 flex items-center justify-center">
+                {car.image && <img src={car.image} alt={car.name} className="w-full h-full object-cover" />}
+              </div>
+              <div className="p-6">
+                <h3 className="text-lg font-semibold text-ink">{car.name}</h3>
+                <p className="text-sm text-ink/60 mt-1">{[car.year, car.transmission, car.engine].filter(Boolean).join(", ")}</p>
+                <p className="mt-4 text-2xl font-bold text-brand-light">{car.price}</p>
+                <div className="mt-6 flex gap-2">
                   <a
                     href={`/cars/${car.id}`}
-                    className="rounded-full border border-ink/15 bg-ink/[0.04] px-4 py-3 text-center text-sm font-semibold text-ink transition hover:border-ink/30 hover:bg-ink/[0.08]"
+                    className="flex-1 rounded-lg bg-brand px-4 py-3 text-center font-semibold text-white transition hover:bg-brand-light"
                   >
                     View Details
                   </a>
-                  <a href={`${contact.wa}?text=Hi, I'm interested in the ${car.name}`} className={waClass}>
+                  <a
+                    href={`${contact.wa}?text=${encodeURIComponent(`Hi, I'm interested in the ${car.name}`)}`}
+                    className="flex-1 rounded-lg bg-accent px-4 py-3 text-center font-semibold text-white transition hover:bg-accent-dark"
+                  >
                     Chat on WhatsApp
                   </a>
                 </div>
@@ -190,19 +171,22 @@ export default async function HomePage() {
 
       {/* Services Section */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <SectionHead eyebrow="What We Offer" title="Our Services" subtitle="Comprehensive automotive solutions for all your needs" />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl font-bold text-ink sm:text-4xl">Our Services</h2>
+          <p className="mt-4 text-lg text-ink/60">Comprehensive automotive solutions for all your needs</p>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {services.map((service, index) => (
-            <div key={index} className={`${cardClass} flex h-full flex-col p-6`}>
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(220px_140px_at_50%_0%,rgba(43,59,255,0.18),transparent_70%)] opacity-0 transition group-hover:opacity-100" />
-              <div className="relative mb-5 flex h-12 w-12 items-center justify-center rounded-[14px] border border-brand/30 bg-brand/10 text-brand-light">
-                <service.icon className="h-6 w-6" />
-              </div>
-              <h3 className="relative mb-2 text-lg font-bold tracking-tight text-ink">{service.title}</h3>
-              <p className="relative mb-5 flex-grow text-sm leading-relaxed text-ink/60">{service.description}</p>
+            <div
+              key={index}
+              className="group overflow-hidden rounded-2xl border border-brand/20 bg-surface/70 shadow-lg transition hover:border-brand/60 hover:shadow-brand/20 hover:shadow-2xl backdrop-blur p-6 flex flex-col h-full"
+            >
+              <div className="text-4xl mb-4">{service.icon}</div>
+              <h3 className="text-lg font-semibold text-ink mb-3">{service.title}</h3>
+              <p className="flex-grow text-sm text-ink/60 mb-4 leading-relaxed">{service.description}</p>
               <a
-                href={`${contact.wa}?text=Hi, I'm interested in ${service.title}`}
-                className={`${waClass} relative mt-auto w-full`}
+                href={`https://wa.me/254700123456?text=Hi, I'm interested in ${service.title}`}
+                className="inline-flex items-center justify-center gap-2 mt-auto w-full rounded-lg bg-accent px-4 py-3 text-sm font-semibold text-white transition hover:bg-accent-dark"
               >
                 Chat on WhatsApp
               </a>
@@ -213,17 +197,25 @@ export default async function HomePage() {
 
       {/* Accessories Preview */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <SectionHead eyebrow="Shop" title="Auto Accessories" subtitle="Enhance your vehicle with our premium accessories" />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl font-bold text-ink sm:text-4xl">Auto Accessories</h2>
+          <p className="mt-4 text-lg text-ink/60">Enhance your vehicle with our premium accessories</p>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {accessories.map((item, index) => (
-            <div key={index} className={cardClass}>
-              <ImageTile icon={BatteryCharging} />
-              <div className="p-5">
-                <h3 className="text-lg font-bold tracking-tight text-ink">{item.name}</h3>
-                <p className="mt-3 text-2xl font-extrabold tracking-tight text-brand-light">{item.price}</p>
+            <div
+              key={index}
+              className="group overflow-hidden rounded-2xl border border-brand/20 bg-surface/70 shadow-lg transition hover:border-brand/60 hover:shadow-brand/20 hover:shadow-lg backdrop-blur"
+            >
+              <div className="aspect-square bg-gradient-to-br from-tile1 to-tile2 flex items-center justify-center">
+                <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+              </div>
+              <div className="p-6">
+                <h3 className="text-lg font-semibold text-ink">{item.name}</h3>
+                <p className="mt-4 text-2xl font-bold text-brand-light">{item.price}</p>
                 <a
-                  href={`${contact.wa}?text=Hi, I'm interested in ordering ${item.name}`}
-                  className={`${waClass} mt-5 w-full`}
+                  href={`https://wa.me/254700123456?text=Hi, I'm interested in ordering ${item.name}`}
+                  className="mt-6 inline-block w-full rounded-lg bg-accent px-4 py-3 text-center font-semibold text-white transition hover:bg-accent-dark"
                 >
                   Order via WhatsApp
                 </a>
@@ -238,9 +230,9 @@ export default async function HomePage() {
 
       {/* About Preview Section */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <div className="overflow-hidden rounded-[26px] border border-ink/10 bg-gradient-to-b from-surface2 to-surface p-8 sm:p-12">
+        <div className="overflow-hidden rounded-3xl border border-brand/20 bg-surface/70 p-8 shadow-2xl backdrop-blur sm:p-12">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-lg leading-relaxed text-ink/80">
+            <p className="text-lg text-ink/70 leading-relaxed">
               At Obele Autos and Accessories, we are committed to delivering quality, reliability, and convenience to every car owner. We provide affordable foreign cars, genuine parts, and expert servicing all in one place.
             </p>
             <div className="mt-8">
@@ -252,18 +244,17 @@ export default async function HomePage() {
 
       {/* Final CTA */}
       <section className="mx-auto w-full max-w-6xl px-4">
-        <div className="relative overflow-hidden rounded-[26px] border border-brand/30 bg-gradient-to-r from-brand/15 to-brand-light/10 p-8 sm:p-12">
-          <div className="pointer-events-none absolute inset-x-0 -top-20 mx-auto h-56 w-56 rounded-full bg-brand/25 blur-3xl" />
-          <div className="relative mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">Ready to upgrade your ride?</h2>
-            <p className="mt-4 text-lg text-ink/80">
+        <div className="overflow-hidden rounded-3xl bg-surface border border-brand/20 p-8 shadow-2xl backdrop-blur sm:p-12">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold text-ink sm:text-4xl">Ready to upgrade your ride?</h2>
+            <p className="mt-4 text-lg text-ink/70">
               Get in touch with us today for the best automotive deals.
             </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Button href={contact.wa} className="!bg-green-500 !bg-none !text-white !shadow-none hover:!bg-green-600">
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center sm:gap-6">
+              <Button href="https://wa.me/254700123456" className="bg-accent hover:bg-accent-dark text-white text-lg px-8 py-4">
                 Chat on WhatsApp
               </Button>
-              <Button href={contact.tel} variant="secondary">Call Now</Button>
+              <Button href="tel:+254700123456" variant="secondary">Call Now</Button>
             </div>
           </div>
         </div>
